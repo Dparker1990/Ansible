@@ -1,7 +1,7 @@
 require 'ansible'
 
 describe Ansible do
-  let(:config_path) { "lib/generators/ansible/templates/ansible.yml" }
+  let(:config_path) { 'lib/generators/ansible/templates/ansible.yml' }
 
   describe '.load_config' do
     context 'with an available config file' do

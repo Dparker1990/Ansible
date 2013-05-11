@@ -1,4 +1,4 @@
-require "ansible/version"
+require 'ansible/version'
 
 module Ansible
 
