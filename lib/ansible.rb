@@ -1,3 +1,4 @@
+require 'yaml'
 require 'ansible/version'
 
 module Ansible
