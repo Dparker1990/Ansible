@@ -1,21 +1,5 @@
-require 'yaml'
-require 'ansible/version'
+require 'ansible/transmit'
 
-module Ansible
-
-  class << self
-
-    def load_config path, environment
-      yaml = YAML.load_file(path)[environment]
-      yaml.each { |key, value| config[key.to_sym] = value }
-    end
-
-    def reset_config
-      @config = {}
-    end
-
-    def config
-      @config ||= {}
-    end
-  end
+ActiveSupport.on_load(:controller) do
+  extend Ansible::Transmit
 end
