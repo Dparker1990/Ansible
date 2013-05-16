@@ -2,6 +2,8 @@ module Ansible
   module Transmit
     def self.extended(base)
       base.class_eval do
+        include ActionController::Live
+
         def self._beacons
           @_beacons ||= []
         end
