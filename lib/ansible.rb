@@ -1,3 +1,4 @@
+require 'ansible/constant_resolver'
 require 'ansible/transmit'
 
 ActiveSupport.on_load(:action_controller) do
