@@ -14,7 +14,7 @@ module Ansible
       _beacons << :"#{name}_ansible_beacon"
 
       define_method "#{name}_ansible_beacon" do
-        raise NotImplementedError
+        response.headers['Content-Type'] = 'text/event-stream'
       end
     end
   end
