@@ -7,8 +7,6 @@ module Ansible
         def self._beacons
           @_beacons ||= []
         end
-
-        before_filter :alert_beacons, only: @_beacons # Figure out a sane filter
       end
     end
 

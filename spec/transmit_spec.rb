@@ -8,14 +8,6 @@ class TestController < ActionController::Base
 end
 
 describe Ansible::Transmit do
-  describe '.extended' do
-    let(:controller) { TestController.new }
-
-    it 'adds a before filter to add correct content-type for beacon actions' do
-      controller.class._process_action_callbacks.should_not eq []
-    end
-  end
-
   describe '.transmit' do
     let(:controller) { TestController.new }
 
