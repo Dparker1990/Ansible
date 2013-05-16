@@ -12,13 +12,12 @@ module Rails
     def routes
       return @routes if defined? @routes
 
-      @routes = ActionDispatch::Routing::RouteSet.new
-      @routes.draw do
-        get '/test/space_ansible_beacon' => "tests#space_ansible_beacon"
-        get '/test/new' => "tests#new"
+      @routes = ActionDispatch::Routing::RouteSet.new.tap do |routes|
+        routes.draw do
+          get '/test/space_ansible_beacon' => "tests#space_ansible_beacon"
+          get '/test/new' => "tests#new"
+        end
       end
-
-      @routes
     end
   end
 

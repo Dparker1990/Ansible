@@ -22,12 +22,5 @@ describe Ansible::Transmit do
     it 'adds the new beacon name to _beacons' do
       controller.class._beacons.should include :space_ansible_beacon
     end
-
-    # move this into a rails integration spec
-    describe 'the method .transmit creates' do
-      it 'sets the content-type to text/event-stream' do
-        pending
-      end
-    end
   end
 end
