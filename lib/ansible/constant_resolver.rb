@@ -11,7 +11,7 @@ module Ansible
     private
 
     def name
-      @name.to_s
+      @name.to_s.titleize
     end
   end
 end
