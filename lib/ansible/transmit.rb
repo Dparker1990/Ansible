@@ -11,11 +11,20 @@ module Ansible
     end
 
     def transmit(name)
-      _beacons << :"#{name}_ansible_beacon"
+      @name = name
+      _beacons << beacon_name.to_sym
 
-      define_method "#{name}_ansible_beacon" do
+      define_method beacon_name do
         response.headers['Content-Type'] = 'text/event-stream'
+
+        render nothing: true
       end
+    end
+
+    private
+
+    def beacon_name
+      "#{@name}_ansible_beacon"
     end
   end
 end
