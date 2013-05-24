@@ -16,6 +16,7 @@ module Rails
         routes.draw do
           get '/test/space_ansible_beacon' => "tests#space_ansible_beacon"
           get '/test/new' => "tests#new"
+          post '/test' => "tests#new"
         end
       end
     end

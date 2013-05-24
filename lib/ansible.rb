@@ -1,3 +1,4 @@
+require 'ansible/sse'
 require 'ansible/constant_resolver'
 require 'ansible/transmit'
 

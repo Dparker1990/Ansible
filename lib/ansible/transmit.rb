@@ -3,10 +3,7 @@ module Ansible
     def self.extended(base)
       base.class_eval do
         include ActionController::Live
-
-        def self._beacons
-          @_beacons ||= []
-        end
+        before_filter :transmit_message, only: :new
       end
     end
 
@@ -15,6 +12,12 @@ module Ansible
       _beacons << beacon_name.to_sym
 
       define_method beacon_name, beacon_action
+      define_method :transmit_message, -> { transmit_que << 'test message' }
+      define_method :transmit_que, -> { @_transmit_que ||= [] }
+    end
+
+    def _beacons
+      @_beacons ||= []
     end
 
     private
@@ -27,7 +30,12 @@ module Ansible
       Proc.new do
         response.headers['Content-Type'] = 'text/event-stream'
 
-        render nothing: true
+        sse = SSE.new(response.stream)
+
+        loop do
+          break if transmit_que.empty?
+          sse.write 'test', transmit_que.pop
+        end
       end
     end
   end
