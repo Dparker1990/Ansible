@@ -13,6 +13,7 @@ module Ansible
       define_method beacon_name, beacon_action
       define_method :transmit_message, -> { transmit_que << 'test message' }
       define_method :transmit_que, -> { @_transmit_que ||= [] }
+      beacon_name
     end
 
     def _beacons
