@@ -28,13 +28,17 @@ module Ansible
 
     def beacon_action
       Proc.new do
-        response.headers['Content-Type'] = 'text/event-stream'
-
-        sse = SSE.new(response.stream)
-
-        loop do
-          break if transmit_que.empty?
-          sse.write 'test', transmit_que.pop
+        begin
+          beacon = __method__
+          response.headers['Content-Type'] = 'text/event-stream'
+          sse = SSE.new(response.stream)
+          loop do
+            break if transmit_que[beacon].empty?
+            event, message = transmit_que[beacon].pop.flatten
+            sse.write(event, message)
+          end
+        ensure
+          sse.close
         end
       end
     end
