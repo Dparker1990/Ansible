@@ -9,8 +9,8 @@ describe Ansible::SSE do
       let(:event) { 'message' }
 
       it 'sends data accross the pipe in the correct format' do
-        io.should_receive(:write).with('event: message')
-        io.should_receive(:write).with('data: hello')
+        io.should_receive(:write).with("event: message\n")
+        io.should_receive(:write).with("data: hello\n\n")
         sse.write(:message, 'hello')
       end
     end

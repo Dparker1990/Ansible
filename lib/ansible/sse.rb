@@ -7,8 +7,8 @@ module Ansible
     end
 
     def write(event, message)
-      stream.write "event: #{event}"
-      stream.write "data: #{message}"
+      stream.write "event: #{event}\n"
+      stream.write "data: #{message}\n\n"
     end
 
     def close
