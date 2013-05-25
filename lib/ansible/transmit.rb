@@ -3,7 +3,6 @@ module Ansible
     def self.extended(base)
       base.class_eval do
         include ActionController::Live
-        before_filter :transmit_message, only: :new
       end
     end
 
