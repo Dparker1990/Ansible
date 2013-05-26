@@ -5,10 +5,7 @@ describe TestsController, type: :controller do
   describe 'GET space_ansible_beacon' do
     before do
       described_class.any_instance.stub transmit_que: {
-        space_ansible_beacon: [
-          { update: ['foo'] },
-          { new: ['bar'] }
-        ],
+        space_ansible_beacon: [ { new: ['bar'] } ],
         space: 'foo'
       }
       get beacon_route
@@ -16,7 +13,7 @@ describe TestsController, type: :controller do
 
     let(:beacon_route) { :space_ansible_beacon }
     let(:message) do
-      "event: new\ndata: [\"bar\"]\n\nevent: update\ndata: [\"foo\"]\n\n"
+      "event: new\ndata: [\"bar\"]\n\n"
     end
 
     it 'sets the content-type to text/event-stream' do
