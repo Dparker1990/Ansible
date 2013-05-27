@@ -7,13 +7,12 @@ module Ansible
     end
 
     def transmit(name)
-      @name = name
-      _beacons << beacon_name.to_sym
+      _beacons << :"#{name}_ansible_beacon"
 
-      define_method beacon_name, beacon_action
+      define_method "#{name}_ansible_beacon", beacon_action
       define_method :transmit_message, -> { transmit_que << 'test message' }
       define_method :transmit_que, -> { @_transmit_que ||= [] }
-      beacon_name
+      name
     end
 
     def _beacons
@@ -21,10 +20,6 @@ module Ansible
     end
 
     private
-
-    def beacon_name
-      "#{@name}_ansible_beacon"
-    end
 
     def beacon_action
       Proc.new do
