@@ -6,7 +6,7 @@ module Ansible
 
     def transmit(name)
       beacon_name = :"#{name}_ansible_beacon"
-      _beacons << beacon_name
+      active_beacons << beacon_name
 
       define_method beacon_name, beacon_action
       define_method :transmit_message, -> { transmit_que << 'test message' }
@@ -14,7 +14,7 @@ module Ansible
       name
     end
 
-    def _beacons
+    def active_beacons
       @_beacons ||= []
     end
 

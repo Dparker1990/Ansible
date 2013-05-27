@@ -21,7 +21,7 @@ describe Ansible::Transmit do
     end
 
     it 'adds the new beacon name to _beacons' do
-      controller.class._beacons.should include action_name
+      controller.class.active_beacons.should include action_name
     end
   end
 end
