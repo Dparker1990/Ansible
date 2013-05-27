@@ -24,8 +24,7 @@ module Ansible
           beacon = __method__
           headers['Content-Type'] = 'text/event-stream'
           sse = SSE.new(response.stream)
-          loop do
-            break if transmit_que[beacon].empty?
+          until transmit_que[beacon].empty?
             event, message = transmit_que[beacon].pop.flatten
             sse.write(event, message)
           end
