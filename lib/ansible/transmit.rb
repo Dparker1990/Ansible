@@ -22,7 +22,7 @@ module Ansible
       Proc.new do
         begin
           beacon = __method__
-          response.headers['Content-Type'] = 'text/event-stream'
+          headers['Content-Type'] = 'text/event-stream'
           sse = SSE.new(response.stream)
           loop do
             break if transmit_que[beacon].empty?
