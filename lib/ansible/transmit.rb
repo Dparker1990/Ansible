@@ -1,9 +1,7 @@
 module Ansible
   module Transmit
     def self.extended(base)
-      base.class_eval do
-        include ActionController::Live
-      end
+      base.class_eval { include ActionController::Live }
     end
 
     def transmit(name)
