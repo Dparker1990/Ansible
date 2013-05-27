@@ -9,8 +9,6 @@ module Ansible
       active_beacons << beacon_name
 
       define_method beacon_name, beacon_action
-      define_method :transmit_message, -> { transmit_que << 'test message' }
-      define_method :transmit_que, -> { @_transmit_que ||= [] }
       name
     end
 
