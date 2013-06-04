@@ -1,3 +1,5 @@
+require 'json'
+
 module Ansible
   class SSE
     attr_reader :stream
@@ -8,7 +10,7 @@ module Ansible
 
     def write(event, message)
       stream.write "event: #{event}\n"
-      stream.write "data: #{message}\n\n"
+      stream.write "data: #{JSON.generate message}\n\n"
     end
 
     def close
