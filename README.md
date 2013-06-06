@@ -20,6 +20,10 @@ Or install it yourself as:
 
 To use Ansible, simply add this to your controller for any model you want to transmit events for:
 
+## Requirements
+
+    * Postgres (Ansible makes use of LISTEN / NOTIFY )
+
 ```ruby
 transmit :model
 ```
