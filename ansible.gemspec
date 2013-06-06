@@ -23,4 +23,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rails", "4.0.0.rc1"
   spec.add_development_dependency "pry"
   spec.add_development_dependency "rspec-rails"
+  spec.add_development_dependency "rspec-spies"
 end
