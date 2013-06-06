@@ -1,6 +1,6 @@
 # Ansible
 
-TODO: Write a gem description
+Ansible provides a conveniant way to declaratively stream Server-Sent Events to the client using Rails 4.
 
 ## Installation
 
@@ -18,7 +18,11 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+To use Ansible, simply add this to your controller for any model you want to transmit events for:
+
+```ruby
+transmit :model
+```
 
 ## Contributing
 
