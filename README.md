@@ -24,6 +24,10 @@ To use Ansible, simply add this to your controller for any model you want to tra
 transmit :model
 ```
 
+## Requirements
+
+    * Postgres (Ansible makes use of LISTEN / NOTIFY )
+
 ## Contributing
 
 1. Fork it
