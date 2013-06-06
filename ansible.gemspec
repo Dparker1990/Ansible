@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'ansible/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "ansible"
+  spec.name          = "ansible-sse"
   spec.version       = Ansible::VERSION
   spec.authors       = ["Derek Parker"]
   spec.email         = ["parkerderek86@gmail.com"]
