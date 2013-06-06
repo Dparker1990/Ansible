@@ -17,11 +17,32 @@ module Ansible
 
     def build_route(beacon_name)
       controller_name = self.to_s.underscore.gsub('_controller', '')
-      Rails.application.routes.draw do
-        Rails.application.routes.routes.named_routes.each do |path, route|
-          get path, route.defaults
+      safely_add_route do
+        Rails.application.routes.draw do
+          get "/#{controller_name}/#{beacon_name}" => "#{controller_name}##{beacon_name}"
         end
-        get "/#{controller_name}/#{beacon_name}" => "#{controller_name}##{beacon_name}"
+      end
+    end
+
+    def safely_add_route
+      remove_clear
+      yield
+      reimplement_clear
+    end
+
+    def remove_clear
+      ActionDispatch::Routing::RouteSet.class_eval do
+        def clear_fake
+          -> {}
+        end
+        alias_method :real_clear!, :clear!
+        alias_method :clear!, :clear_fake
+      end
+    end
+
+    def reimplement_clear
+      ActionDispatch::Routing::RouteSet.class_eval do
+        alias_method :clear!, :real_clear!
       end
     end
 
