@@ -59,7 +59,7 @@ module Ansible
       def on_new_message
         listen
 
-        connection.wait_for_notify do |event, pid, message|
+        connection.raw_connection.wait_for_notify do |event, pid, message|
           yield event, message
         end
       end
