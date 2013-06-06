@@ -6,14 +6,23 @@ module Ansible
 
     def transmit(name)
       beacon_name = :"#{name}_ansible_beacon"
-      active_beacons << beacon_name
+      build_route beacon_name
+      model = ConstantResolver.new(name).lookup_constant
+
+      model.extend TransmitModalHelper
 
       define_method beacon_name, beacon_action
       name
     end
 
-    def active_beacons
-      @_beacons ||= []
+    def build_route(beacon_name)
+      controller_name = self.to_s.underscore.gsub('_controller', '')
+      Rails.application.routes.draw do
+        Rails.application.routes.routes.named_routes.each do |path, route|
+          get path, route.defaults
+        end
+        get "/#{controller_name}/#{beacon_name}" => "#{controller_name}##{beacon_name}"
+      end
     end
 
     private
@@ -22,15 +31,41 @@ module Ansible
       Proc.new do
         begin
           beacon = __method__
+          model = ConstantResolver.new(beacon.to_s.split("_").first).lookup_constant
+
           headers['Content-Type'] = 'text/event-stream'
           sse = SSE.new(response.stream)
-          until transmit_que[beacon].empty?
-            event, message = transmit_que[beacon].pop.flatten
-            sse.write(event, message)
+
+          model.on_new_message do |event, message|
+            sse.write event, message
           end
         ensure
           sse.close
         end
+      end
+    end
+
+    module TransmitModalHelper
+      def self.extended(base)
+        base.class_eval do
+          after_commit :notify
+
+          def notify
+            self.class.connection.execute "NOTIFY #{self.class.table_name}, #{self.class.connection.quote attributes}"
+          end
+        end
+      end
+
+      def on_new_message
+        listen
+
+        self.class.connection.wait_for_notify do |event, pid, message|
+          yield event, message
+        end
+      end
+
+      def listen
+        self.class.connection.execute "LISTEN #{table_name}"
       end
     end
   end
