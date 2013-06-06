@@ -51,7 +51,7 @@ module Ansible
           after_commit :notify
 
           def notify
-            self.class.connection.execute "NOTIFY #{self.class.table_name}, #{self.class.connection.quote attributes}"
+            connection.execute "NOTIFY #{self.class.table_name}, #{self.class.connection.quote attributes}"
           end
         end
       end
@@ -59,13 +59,13 @@ module Ansible
       def on_new_message
         listen
 
-        self.class.connection.wait_for_notify do |event, pid, message|
+        connection.wait_for_notify do |event, pid, message|
           yield event, message
         end
       end
 
       def listen
-        self.class.connection.execute "LISTEN #{table_name}"
+        connection.execute "LISTEN #{table_name}"
       end
     end
   end
