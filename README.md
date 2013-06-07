@@ -1,6 +1,6 @@
 # Ansible
 
-Ansible provides a conveniant way to declaratively stream Server-Sent Events to the client using Rails 4.
+Ansible provides a conveviance method to wrap the ActionController::Live functionality in Rails 4.
 
 ## Installation
 
@@ -18,19 +18,39 @@ Or install it yourself as:
 
 ## Usage
 
-To use Ansible, simply add this to your controller for any model you want to transmit events for:
-
-## Requirements
-
-    * Postgres (Ansible makes use of LISTEN / NOTIFY )
+To use Ansible, simply create a routable action in your controller that will represent the event source for transmitting the Server-Sent Events, and then use the `transmit` method to send accross an event and data payload to the client.
 
 ```ruby
-transmit :model
+FoosController < ActionController::Base
+
+  ...
+
+  def transmit_action
+    transmit 'event', my: 'really', cool: 'message'
+  end
+
+  ...
+
+end
+```
+
+This will create a properly formatted Server-Sent Event using the functionality of ActionController::Live.
+
+To consume this event on the client side, simply use the Javascript EventSource API:
+
+```javascript
+$(document).ready(function(){
+  var source = new EventSource('your/eventsource/url');
+  source.addEventListener('your_event', function(message){
+    // now the data that you send along will be available in
+    // message.data, and will come in the form of a JSON document
+  });
+});
 ```
 
 ## Requirements
 
-    * Postgres (Ansible makes use of LISTEN / NOTIFY )
+    * Ansible relies on the ActionController::Live functionality of Rails 4
 
 ## Contributing
 
@@ -39,3 +59,7 @@ transmit :model
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
+
+## License
+
+    * MIT
