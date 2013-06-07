@@ -2,6 +2,7 @@ require 'fixtures/fake_rails_app'
 
 class TestsController < ActionController::Base
   include Rails.application.routes.url_helpers
+  include ActionController::Live
 
   def new
     render text: "new"
@@ -13,9 +14,5 @@ class TestsController < ActionController::Base
 
   def space_beacon
     transmit 'space', expanding: true
-  end
-
-  def space_params
-    params.require(:space).permit(:expanding)
   end
 end
