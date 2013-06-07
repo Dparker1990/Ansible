@@ -66,4 +66,4 @@ $(document).ready(function(){
 
 ## License
 
-    * MIT
+MIT
