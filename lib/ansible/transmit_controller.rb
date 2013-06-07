@@ -1,8 +1,8 @@
 module Ansible
   module TransmitController
-    def transmit(event, message)
+    def transmit(event, retry_connection, message)
       set_headers
-      sse.write event, message unless stream_closed?
+      sse.write event, retry_connection, message unless stream_closed?
     end
 
     def close_connection

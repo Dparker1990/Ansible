@@ -7,7 +7,7 @@ describe Ansible::SSE do
   describe '#write' do
     context 'with an event specified' do
       it 'sends data accross the pipe in the correct format' do
-        sse.write(:message, hello: 'hello')
+        sse.write(:message, 1000, hello: 'hello')
         io.should have_received(:write).with("event: message\n")
         io.should have_received(:write).with(%{data: {\"hello\":\"hello\"}\n\n})
       end

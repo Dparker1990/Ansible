@@ -20,6 +20,8 @@ Or install it yourself as:
 
 To use Ansible, simply create a routable action in your controller that will represent the event source for transmitting the Server-Sent Events, and then use the `transmit` method to send accross an event and data payload to the client.
 
+The first arguement to `transmit` is the event name, the second arguement is amount of time between the client attempting to re-establish connection (in milliseconds), and the last argument is a hash containing the data that should be sent to the client.
+
 ```ruby
 FoosController < ActionController::Base
   include ActionController::Live
@@ -27,7 +29,7 @@ FoosController < ActionController::Base
   ...
 
   def transmit_action
-    transmit 'event', my: 'really', cool: 'message'
+    transmit 'event', 1000, my: 'really', cool: 'message'
     close_connection # you must manually close the connection
   end
 
@@ -53,10 +55,6 @@ $(document).ready(function(){
 ## Requirements
 
   * Ansible relies on the ActionController::Live functionality of Rails 4
-
-## Known Issues
-
-  * There is currently no way to configure the retry time that is sent with the SSE, a configuration strategy will be added in v1.0.
 
 ## Contributing
 

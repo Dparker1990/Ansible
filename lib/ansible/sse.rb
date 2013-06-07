@@ -8,9 +8,9 @@ module Ansible
       @stream = stream
     end
 
-    def write(event, message)
+    def write(event, retry_connection, message)
       stream.write "event: #{event}\n"
-      stream.write "retry: 1000\n"
+      stream.write "retry: #{retry_connection}\n"
       stream.write "data: #{JSON.dump message}\n\n"
     end
 
