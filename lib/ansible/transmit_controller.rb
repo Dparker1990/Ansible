@@ -6,7 +6,7 @@ module Ansible
     end
 
     def close_connection
-      response.stream.close
+      sse.close
     end
 
     def stream_closed?
