@@ -22,6 +22,7 @@ To use Ansible, simply create a routable action in your controller that will rep
 
 ```ruby
 FoosController < ActionController::Base
+  include ActionController::Live
 
   ...
 
