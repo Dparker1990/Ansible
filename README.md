@@ -27,6 +27,7 @@ FoosController < ActionController::Base
 
   def transmit_action
     transmit 'event', my: 'really', cool: 'message'
+    close_connection # you must manually close the connection
   end
 
   ...
