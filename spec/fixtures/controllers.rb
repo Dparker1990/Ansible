@@ -14,5 +14,6 @@ class TestsController < ActionController::Base
 
   def space_beacon
     transmit 'space', expanding: true
+    close_connection
   end
 end
