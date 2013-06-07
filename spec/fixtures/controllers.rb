@@ -11,6 +11,10 @@ class TestsController < ActionController::Base
     head :ok
   end
 
+  def space_beacon
+    transmit 'space', expanding: true
+  end
+
   def space_params
     params.require(:space).permit(:expanding)
   end

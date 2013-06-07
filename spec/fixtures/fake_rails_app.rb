@@ -16,7 +16,8 @@ module Rails
 
       @routes = ActionDispatch::Routing::RouteSet.new.tap do |routes|
         routes.draw do
-          post '/test' => "tests#create"
+          post '/test' => 'tests#create'
+          get '/test/space_beacon' => 'tests#space_beacon'
         end
       end
     end
