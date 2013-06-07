@@ -50,7 +50,11 @@ $(document).ready(function(){
 
 ## Requirements
 
-    * Ansible relies on the ActionController::Live functionality of Rails 4
+  * Ansible relies on the ActionController::Live functionality of Rails 4
+
+## Known Issues
+
+  * There is currently no way to configure the retry time that is sent with the SSE, a configuration strategy will be added in v1.0.
 
 ## Contributing
 
