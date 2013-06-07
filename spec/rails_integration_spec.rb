@@ -17,10 +17,5 @@ describe TestsController, type: :controller do
       sleep 0.1 until response.stream.closed?
       response.body.should eq %{event: space\nretry: 1000\ndata: {"expanding":true}\n\n}
     end
-
-    it 'does not override predefined routes' do
-      post :create
-      response.should be_ok
-    end
   end
 end
