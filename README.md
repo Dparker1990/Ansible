@@ -6,7 +6,7 @@ Ansible provides a conveviance method to wrap the ActionController::Live functio
 
 Add this line to your application's Gemfile:
 
-    gem 'ansible'
+    gem 'ansible-rails'
 
 And then execute:
 
@@ -14,7 +14,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install ansible
+    $ gem install ansible-rails
 
 ## Usage
 

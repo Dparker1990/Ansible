@@ -4,13 +4,13 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'ansible/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "ansible-sse"
+  spec.name          = "ansible-rails"
   spec.version       = Ansible::VERSION
   spec.authors       = ["Derek Parker"]
   spec.email         = ["parkerderek86@gmail.com"]
-  spec.description   = "Ansible allows you to stream events to a partial using ActionController::Live"
-  spec.summary       = "Real time updates to browser using ActionController::Live"
-  spec.homepage      = ""
+  spec.description   = "Ansible provides a conveniance method to your Rails controllers for creating SSEs."
+  spec.summary       = "Ansible is a conveniant way to generate Server-Sent Events"
+  spec.homepage      = "https://www.github.com/dparker1990/ansible-rails"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
