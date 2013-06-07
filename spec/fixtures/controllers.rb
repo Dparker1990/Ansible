@@ -1,9 +1,5 @@
 require 'fixtures/fake_rails_app'
 
-class Space < ActiveRecord::Base
-  transmittable
-end
-
 class TestsController < ActionController::Base
   include Rails.application.routes.url_helpers
 

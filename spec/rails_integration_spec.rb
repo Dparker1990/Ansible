@@ -3,10 +3,9 @@ require 'rspec/rails'
 require 'spec_helper'
 
 describe TestsController, type: :controller do
-  describe 'GET space_ansible_beacon' do
+  describe 'GET space_beacon' do
     before do
-      Space.stub(:on_new_message).and_yield('space', '{"expanding":true}')
-      get :space_ansible_beacon
+      get :space_beacon
     end
 
     it 'sets the content-type to text/event-stream' do
