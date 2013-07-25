@@ -13,7 +13,7 @@ class TestsController < ActionController::Base
   end
 
   def space_beacon
-    transmit 'space', 1000, expanding: true
+    transmit event: 'space', retry: 1000, data: { expanding: true }
     close_connection
   end
 end

@@ -2,21 +2,25 @@ require 'json'
 
 module Transmitter
   class SSE
-    attr_reader :stream
+    attr_reader :response_stream, :message
 
-    def initialize(stream)
-      @stream = stream
+    def initialize(response_stream)
+      @response_stream = response_stream
     end
 
-    def write(event, retry_connection, data)
-      message = "event: #{event}\n"
-      message << "retry: #{retry_connection}\n"
-      message << "data: #{JSON.dump data}\n\n"
-      stream.write message
+    def stream
+      response_stream.write message
     end
 
     def close
-      stream.close
+      response_stream.close
+    end
+
+    def build_message(opts)
+      @message = "event: #{opts[:event]}\n"
+      @message << "retry: #{opts[:retry]}\n" if opts.has_key? :retry
+      @message << "data: #{opts[:data].to_json}\n\n"
+      self
     end
   end
 end

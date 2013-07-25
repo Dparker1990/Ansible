@@ -1,8 +1,8 @@
 module Transmitter
   module Origin
-    def transmit(event, retry_connection, message)
+    def transmit(opts)
       set_headers
-      sse.write event, retry_connection, message unless stream_closed?
+      sse.build_message(opts).stream unless stream_closed?
     end
 
     def close_connection
