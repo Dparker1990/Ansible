@@ -1,12 +1,12 @@
-# Ansible
+# Transmitter
 
-Ansible provides a conveviance method to wrap the ActionController::Live functionality in Rails 4.
+Transmitter provides a conveviance method to wrap the ActionController::Live functionality in Rails 4.
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
-    gem 'ansible-rails'
+    gem 'transmitter'
 
 And then execute:
 
@@ -14,11 +14,11 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install ansible-rails
+    $ gem install transmitter
 
 ## Usage
 
-To use Ansible, simply create a routable action in your controller that will represent the event source for transmitting the Server-Sent Events, and then use the `transmit` method to send accross an event and data payload to the client.
+To use Transmitter, simply create a routable action in your controller that will represent the event source for transmitting the Server-Sent Events, and then use the `transmit` method to send accross an event and data payload to the client.
 
 The first arguement to `transmit` is the event name, the second arguement is amount of time between the client attempting to re-establish connection (in milliseconds), and the last argument is a hash containing the data that should be sent to the client.
 
@@ -54,7 +54,7 @@ $(document).ready(function(){
 
 ## Requirements
 
-  * Ansible relies on the ActionController::Live functionality of Rails 4
+  * Transmitter relies on the ActionController::Live functionality of Rails 4
 
 ## Contributing
 

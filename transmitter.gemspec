@@ -1,16 +1,16 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'ansible/version'
+require 'transmitter/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "ansible-rails"
-  spec.version       = Ansible::VERSION
+  spec.name          = "transmitter"
+  spec.version       = Transmitter::VERSION
   spec.authors       = ["Derek Parker"]
   spec.email         = ["parkerderek86@gmail.com"]
-  spec.description   = "Ansible provides a conveniance method to your Rails controllers for creating SSEs."
-  spec.summary       = "Ansible is a conveniant way to generate Server-Sent Events"
-  spec.homepage      = "https://www.github.com/dparker1990/ansible-rails"
+  spec.description   = "Transmitter provides a conveniance method to your Rails controllers for creating SSEs."
+  spec.summary       = "Transmitter is a conveniant way to generate Server-Sent Events"
+  spec.homepage      = "https://www.github.com/dparker1990/transmitter"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)

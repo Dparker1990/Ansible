@@ -1,4 +1,4 @@
-module Ansible
+module Transmitter
   class ConstantResolver
     def initialize(name)
       @name = name

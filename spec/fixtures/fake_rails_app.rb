@@ -5,7 +5,7 @@ require 'active_model'
 require 'active_record'
 require 'rails'
 require 'ostruct'
-require 'ansible-rails'
+require 'transmitter'
 
 module Rails
   class App

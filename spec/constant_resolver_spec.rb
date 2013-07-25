@@ -1,7 +1,7 @@
 require 'spec_helper'
-require 'ansible/constant_resolver'
+require 'transmitter/constant_resolver'
 
-describe Ansible::ConstantResolver do
+describe Transmitter::ConstantResolver do
   describe '#lookup_constant' do
     before { class Space; end }
 

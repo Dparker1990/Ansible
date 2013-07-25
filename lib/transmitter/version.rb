@@ -1,4 +1,4 @@
-module Ansible
+module Transmitter
   MAJOR = 0
   MINOR = 9
   TINY = 6

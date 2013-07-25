@@ -1,23 +1,27 @@
-require 'ansible/sse'
+require 'transmitter/sse'
 
-describe Ansible::SSE do
-  let(:io) { stub(write: true) }
-  let(:sse) { Ansible::SSE.new(io) }
+describe Transmitter::SSE do
+  let(:io) { stub(write: true, close: true) }
+  let(:sse) { Transmitter::SSE.new(io) }
+  let(:mutex) { Mutex.new }
 
   describe '#write' do
     context 'with an event specified' do
       it 'sends data accross the pipe in the correct format' do
-        sse.write(:message, 1000, hello: 'hello')
-        io.should have_received(:write).with("event: message\n")
-        io.should have_received(:write).with(%{data: {\"hello\":\"hello\"}\n\n})
+        mutex.lock do
+          sse.write(:message, 1000, hello: 'hello')
+          io.should have_received(:write).with("event: message\nretry: 1000\ndata: \"event: message\\nretry: 1000\\n\"\n\n")
+        end
       end
     end
   end
 
   describe '#close' do
     it 'closes the IO connection' do
-      io.should_receive :close
-      sse.close
+      mutex.lock do
+        sse.close
+        io.should have_received(:close)
+      end
     end
   end
 end

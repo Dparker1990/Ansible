@@ -1,6 +1,6 @@
+require 'rspec-spies'
 require 'fixtures/fake_rails_app'
 require 'fixtures/controllers'
-require 'rspec-spies'
 
 ActiveRecord::Base.establish_connection :adapter => :postgresql,
     :adapter => 'postgresql',
