@@ -43,14 +43,12 @@ This will create a properly formatted Server-Sent Event using the functionality 
 
 To consume this event on the client side, simply use the Javascript EventSource API:
 
-```javascript
-$(document).ready(function(){
-  var source = new EventSource('your/eventsource/url');
-  source.addEventListener('your_event', function(message){
-    // now the data that you send along will be available in
-    // message.data, and will come in the form of a JSON document
-  });
-});
+```coffeescript
+$ ->
+  source = new EventSource('your/eventsource/url')
+  source.addEventListener('your_event',(message) ->
+    # now the data that you send along will be available in
+    # message.data, and will come in the form of a JSON document
 ```
 
 ## Requirements
