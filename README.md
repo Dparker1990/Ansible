@@ -20,7 +20,7 @@ Or install it yourself as:
 
 To use Transmitter, simply create a routable action in your controller that will represent the event source for transmitting the Server-Sent Events, and then use the `transmit` method to send accross an event and data payload to the client.
 
-The first arguement to `transmit` is the event name, the second arguement is amount of time between the client attempting to re-establish connection (in milliseconds), and the last argument is a hash containing the data that should be sent to the client.
+Transmit takes a hash that __MUST__ contain an `event` key and a `data` key. Optionally you may also supply a `retry` key which will signify how long the client should wait to attempt to reconnect.
 
 ```ruby
 FoosController < ActionController::Base
