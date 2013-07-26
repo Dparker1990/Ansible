@@ -1,4 +1,3 @@
-require 'rspec-spies'
 require 'fixtures/fake_rails_app'
 require 'fixtures/controllers'
 
