@@ -46,7 +46,7 @@ To consume this event on the client side, simply use the Javascript EventSource 
 ```coffeescript
 $ ->
   source = new EventSource('your/eventsource/url')
-  source.addEventListener('your_event',(message) ->
+  source.addEventListener 'your_event', (message) ->
     # now the data that you send along will be available in
     # message.data, and will come in the form of a JSON document
 ```
