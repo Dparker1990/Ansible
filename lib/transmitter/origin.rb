@@ -1,7 +1,15 @@
 module Transmitter
   module Origin
+    def stream
+      begin
+        set_headers
+        yield
+      ensure
+        close_connection
+      end
+    end
+
     def transmit(opts)
-      set_headers
       sse.build_message(opts).stream unless stream_closed?
     end
 

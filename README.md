@@ -29,8 +29,9 @@ FoosController < ActionController::Base
   ...
 
   def transmit_action
-    transmit event: 'event', retry: 1000, data: { my: 'really', cool: 'message' }
-    close_connection # you must manually close the connection
+    stream do
+      transmit event: 'event', retry: 1000, data: { my: 'really', cool: 'message' }
+    end
   end
 
   ...
