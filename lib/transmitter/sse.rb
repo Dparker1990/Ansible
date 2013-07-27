@@ -17,10 +17,21 @@ module Transmitter
     end
 
     def build_message(opts)
-      @message = "event: #{opts[:event]}\n"
+      @message = "id: #{next_id}\n"
+      @message << "event: #{opts[:event]}\n"
       @message << "retry: #{opts[:retry]}\n" if opts.has_key? :retry
       @message << "data: #{opts[:data].to_json}\n\n"
       self
+    end
+
+    private
+
+    def next_id
+      counter.next
+    end
+
+    def counter
+      Counter.instance
     end
   end
 end

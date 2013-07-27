@@ -1,3 +1,4 @@
+require 'transmitter/counter'
 require 'transmitter/sse'
 require 'transmitter/constant_resolver'
 require 'transmitter/origin'
